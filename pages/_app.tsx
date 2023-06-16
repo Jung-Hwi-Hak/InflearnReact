@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import Layout from "../src/components-example/commons/layout";
 
-export default function App({ Component }: AppProps): JSX.Element {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const client = new ApolloClient({
     uri: "http://backend-example.codebootcamp.co.kr/graphql",
     // uri: "http://backend-practice.codebootcamp.co.kr/graphql",
@@ -13,7 +14,9 @@ export default function App({ Component }: AppProps): JSX.Element {
     <div>
       <div>====여기는 _app.js 컴포넌트 입니다.====</div>
       <ApolloProvider client={client}>
-        <Component />
+        <Layout>
+          <Component />
+        </Layout>
       </ApolloProvider>
       <div>====여기는 _app.js 컴포넌트 입니다.====</div>
     </div>
