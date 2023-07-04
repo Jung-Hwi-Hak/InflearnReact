@@ -1,5 +1,4 @@
 import axios from "axios";
-import MyPage from "../../section01/01-01-example";
 import { useEffect, useState } from "react";
 
 export default function RestGetPage(): JSX.Element {
@@ -13,8 +12,6 @@ export default function RestGetPage(): JSX.Element {
     };
 
     void onClickSync();
-
-    // setDog(result);
   }, []);
 
   return (
