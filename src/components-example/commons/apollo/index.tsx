@@ -4,8 +4,11 @@ import {
   ApolloProvider,
   ApolloLink,
 } from "@apollo/client";
+import { useRecoilState } from "recoil";
 import { createUploadLink } from "apollo-upload-client";
+import { accessTokenState } from "../../../commons/stores";
 
+// 서버데이터
 const GLOBAL_STATE = new InMemoryCache();
 
 interface IApolloSettingProps {
@@ -13,8 +16,14 @@ interface IApolloSettingProps {
 }
 
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
+  const [accessToken] = useRecoilState(accessTokenState);
+
   const uploadLink = createUploadLink({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql",
+    // graphql 요청시 무조건 header 에 토큰을 넣어 api 요청
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
   });
 
   const client = new ApolloClient({
