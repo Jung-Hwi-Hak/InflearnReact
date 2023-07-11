@@ -1,0 +1,35 @@
+function useQuery(qqq){
+    // qqq API 요청하기
+    return {
+        data: {fetchBoard: {wroter: "철수"}},
+        refetch: () => {
+            console.log("리페치 실행");
+        }
+    }
+}
+
+const {data, refetch} = useQuery("FETCH_BOARD")
+
+data
+{fetchBoard: {…}}
+
+refetch
+() => {
+            console.log("리페치 실행");
+        }
+
+refetch()
+4705-d3af7de4cd3f9b93c037.js:1 리페치 실행
+'철수'
+
+const result = useQuery("FETCH_BOARD")
+result.data.fetchBoard.wroter
+'철수'
+
+result.refetch
+() => {
+            console.log("리페치 실행");
+        }
+
+result.refetch()
+4705-d3af7de4cd3f9b93c037.js:1 리페치 실행
