@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import type { IQuery } from "../../../src/commons/types/generated/types";
-import { LoginChcek } from "../../../src/components-example/commons/hocs/loginCheck";
+import { LoginChcek } from "../../../src/components-example/commons/hocs/withAuth";
 
 const FETCH_USER_LOGGED_IN = gql`
   query {
