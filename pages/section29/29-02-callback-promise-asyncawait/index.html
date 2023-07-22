@@ -1,0 +1,104 @@
+<!-- `http://numbersapi.com/random?min=1&max=200` -->
+<!-- `https://koreanjson.com/posts/${num}` -->
+<!-- `https://koreanjson.com/posts?userId=${userId}` -->
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>콜백함수</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script>
+            const myCallback = () => {
+                const aa = new XMLHttpRequest();
+                aa.open("GET", `http://numbersapi.com/random?min=1&max=200`);
+                aa.send();
+                aa.addEventListener("load", (res) => {
+                    const num = res.target.response.split(" ")[0]; // 랜덤 숫자 API 요청 결과
+                    const bb = new XMLHttpRequest();
+                    bb.open("GET", `https://koreanjson.com/posts/${num}`);
+                    bb.send();
+                    bb.addEventListener("load", (res) => {
+                        const userId = JSON.parse(res.target.response).UserId;
+                        const cc = new XMLHttpRequest();
+                        cc.open("GET", `https://koreanjson.com/posts?userId=${userId}`);
+                        cc.send();
+                        cc.addEventListener("load", (res) => {
+                            console.log(res);
+                        });
+                    });
+                });
+            };
+
+            // new Promise((성공했을때실행시킬함수, 실패했을때실행시킬함수) => {
+            //     try {
+            //         const res = "철수";
+            //         성공했을때실행시킬함수(res); // 이 함수가 then 으로 들어가짐
+            //     } catch (error) {
+            //         const errorMsg = "실패";
+            //         실패했을때실행시킬함수(errorMsg);
+            //     }
+            // })
+            //     .then((res) => {
+            //         console.log(res); // 철수 출력
+            //     })
+            //     .cathc((errorMsg) => {
+            //         console.log(errorMsg); // 실패 출력
+            //     });
+
+            // const axios = {
+            //     get: () => {
+            //         return new Promise((성공시, 실패시) => {});
+            //     },
+            //     post: () => {
+            //         return new Promise((성공시, 실패시) => {});
+            //     },
+            // };
+
+            const myPromise = () => {
+                // 이 방법도 콜백 지옥발생
+                // axios.get(`http://numbersapi.com/random?min=1&max=200`).then((res) => {
+                //     const num = res.target.response.split(" ")[0]; // 랜덤 숫자 API 요청 결과
+                //     axios.get(`https://koreanjson.com/posts/${num}`).then((res) => {
+                //         const userId = JSON.parse(res.target.response).UserId;
+                //         axios.get(`https://koreanjson.com/posts?userId=${userId}`).then((res) => {
+                //             console.log(res);
+                //         });
+                //     });
+                // });
+                console.log("1");
+                axios
+                    .get(`http://numbersapi.com/random?min=1&max=200`)
+                    .then((res) => {
+                        console.log("2");
+                        const num = res.data.split(" ")[0]; // 랜덤 숫자 API 요청 결과
+                        return axios.get(`https://koreanjson.com/posts/${num}`);
+                    })
+                    .then((res) => {
+                        console.log("3");
+                        const userId = res.data.UserId;
+                        return axios.get(`https://koreanjson.com/posts?userId=${userId}`);
+                    })
+                    .then((res) => {
+                        console.log("4");
+                        console.log(res.data);
+                    });
+                console.log("5");
+            };
+
+            const myAsyncAwait = async () => {
+                console.log("1");
+                const num = await axios.get(`http://numbersapi.com/random?min=1&max=200`).then((res) => {
+                    console.log("2");
+                    return res.data.split(" ")[0]; // 랜덤 숫자 API 요청 결과
+                });
+                console.log("3");
+            };
+        </script>
+    </head>
+    <body>
+        <button onclick="myCallback()">Callback 연습</button>
+        <button onclick="myPromise()">Promise 연습</button>
+        <button onclick="myAsyncAwait()">AsyncAwait 연습</button>
+    </body>
+</html>

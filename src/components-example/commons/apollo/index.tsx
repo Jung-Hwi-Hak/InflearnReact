@@ -1,9 +1,4 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  ApolloLink,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { createUploadLink } from "apollo-upload-client";
 import { accessTokenState } from "../../../commons/stores";
@@ -53,10 +48,5 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
     // InMemotyCache 란 글로벌 스테이트이다
     cache: GLOBAL_STATE,
   });
-  // prettier-ignore
-  return (
-      <ApolloProvider client={client}>
-        {props.children}
-      </ApolloProvider>
-  )
+  return <ApolloProvider client={client}>{props.children}</ApolloProvider>;
 }

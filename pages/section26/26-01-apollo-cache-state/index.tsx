@@ -76,7 +76,7 @@ export default function ApolloCacheState(): JSX.Element {
           contents: "내용",
         },
       },
-      // ? 기존 refetch
+      // ? 기존 refetchk
       //   refetchQueries: [{ query: FETCH_BOARDS }],
       // ? update 를 통해 캐쉬 수정
       update(cache, { data }) {

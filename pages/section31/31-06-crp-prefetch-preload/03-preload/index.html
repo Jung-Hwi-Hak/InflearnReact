@@ -1,0 +1,31 @@
+<!-- 
+
+  < 프리로드 >
+  1.한번에 6개씩 받아오므로, body 태그의 이미지는 가장 마지막에 다운로드가 되는데
+  눈에 보이는 이미지를 먼저 다운로드 받아서 보여주고, 클릭하면 실행되는 JS는 나중에
+  받아오게 해줌 ( 전체 총 파일 다운로드 시간이 줄어듬 )
+
+  2. 만약에 prefetch를 한다면 마지막에 받음.
+    즉, prefetch는 다음 페이지를 미리 받아오는것.
+        preload는 현재 페이지에 로드되는 것들중 미리 받아오는것.
+ -->
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>프리로드</title>
+
+    <link rel="preload" as="image" href="./ink.png" />
+
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index1.js"></script>
+    <script src="./index2.js"></script>
+    <script src="./index3.js"></script>
+    <script src="./index4.js"></script>
+    <script src="./index5.js"></script>
+    <script src="./index6.js"></script>
+  </head>
+  <body>
+    <img src="./ink.png" alt="" />
+  </body>
+</html>
