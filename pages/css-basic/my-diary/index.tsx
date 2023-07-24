@@ -3,6 +3,18 @@ import * as S from "./index.styles";
 export default function MyDiary(): JSX.Element {
   return (
     <>
+      <S.Header>
+        <S.HeaderInner>
+          <S.HeaderIconWrapper>
+            <S.HeaderIcon src="../images/ink.png" />
+          </S.HeaderIconWrapper>
+          <S.HeaderNavUl>
+            <S.HeaderNavLi>어제의 일기</S.HeaderNavLi>
+            <S.HeaderNavLi>오늘의 일기</S.HeaderNavLi>
+            <S.HeaderNavLi>내일의 일기</S.HeaderNavLi>
+          </S.HeaderNavUl>
+        </S.HeaderInner>
+      </S.Header>
       <S.Container className="container">
         <S.Section className="wrapper">
           <S.Article className="wrapper__head">

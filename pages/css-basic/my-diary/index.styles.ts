@@ -1,5 +1,23 @@
 import styled from "@emotion/styled";
 
+export const Header = styled.header``;
+
+export const HeaderInner = styled.div``;
+
+export const HeaderIconWrapper = styled.div``;
+export const HeaderIcon = styled.img`
+  width: 100px;
+`;
+
+export const HeaderNavWrapper = styled.nav``;
+export const HeaderNavUl = styled.ul`
+  list-style: none;
+`;
+export const HeaderNavLi = styled.li``;
+
+export const HeaderLoginWrapper = styled.div``;
+export const HeaderLogin = styled.div``;
+
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
